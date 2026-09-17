@@ -107,7 +107,7 @@ Instead of forcing users to navigate multiple procurement systems, inventory por
 
 ---
 
-# Solution 1: Dell Parts Recovery Network
+# Solution 1: Laptop Component Finder
 
 ## Objective
 
@@ -119,7 +119,7 @@ A business owner submits a request through Patron:
 
 > "I need 15 Dell Latitude 7420 batteries and 10 replacement monitor panels."
 
-The request is routed to a specialized Dell Parts Agent.
+The request is routed to a specialized Laptop Components Agent.
 
 The agent:
 
@@ -183,7 +183,7 @@ Compatibility
 
 ---
 
-# Solution 2: Home Depot Material Intelligence Network
+# Solution 2: Workplace Improvement Supply Network
 
 ## Objective
 
@@ -243,7 +243,7 @@ Automatically:
 
 ---
 
-# Solution 3: eBay Authentic Creator Studio
+# Solution 3: Computer Vision Intelligence Studio
 
 ## Objective
 
@@ -432,8 +432,8 @@ The result is a talent pipeline capable of supporting the next generation of AI-
               │         │         │
               ▼         ▼         ▼
 
-       Dell Parts   Home Depot    eBay Creator
-          Agent        Agent          Agent
+       Laptop Components  Workplace    Computer Vision
+                      Agent       Supplies Agent    Agent
 
               └──────────┬───────────┘
                          ▼
@@ -521,27 +521,63 @@ Through intelligent sourcing, authentic commerce, sustainability verification, a
 
 ---
 
+# v1.0 Mock Blueprint Alignment
+
+Patron is an AI-powered multi-agent supply chain orchestrator for Hispanic-owned SMBs, field contractors, and IT service providers. The dashboard is organized around one central orchestrator and three practical workflows:
+
+1. **Laptop component sourcing:** search compatible laptop components through eBay secondary-market and recommerce data.
+2. **Workplace improvement supplies:** find localized commercial supplies through a Home Depot Pro mock/provider boundary.
+3. **Visual Shipment Verification:** use mobile imagery and AI computer vision to create the Visual Supply Chain Ledger, linking condition, timestamps, sourcing records, sustainability signals, and supplier-diversity review evidence.
+
+The current interface is a local demo of this architecture. It deliberately labels results as demo data until the provider contracts, API credentials, storage, and human approval workflows are connected.
+
+## Product workflow
+
+```text
+Patron dashboard chat / mobile upload
+                 |
+                 v
+       Central AI Orchestrator
+          /          |          \
+         v           v           v
+  eBay laptop   Home Depot Pro   Visual Supply Chain
+  components    workplace stock  Ledger / AI vision
+         \           |           /
+          v          v          v
+       Human-reviewed procurement and compliance output
+```
+
+The intended contract surface for the live build is:
+
+- `GET /api/v1/hardware/search` for eBay-backed laptop component discovery.
+- `GET /api/v1/materials/stock` for Home Depot Pro regional workplace supply stock.
+- `POST /api/v1/ledger/verify` for image verification and evidence-card compilation.
+
+For the mock verification contract, the request includes `image_base64`, `associated_po`, and `seller_source`; the response should return a verification status, estimated circular-economy metric, and certificate/report reference. Live routes must use server-side authentication and validate every request.
+
 # MVP Status and Runbook
 
 The repository now contains a runnable proof-of-concept dashboard built with Next.js, React, TypeScript, and Tailwind CSS. It is intentionally useful without paid credentials: the current app runs in **Demo Mode** and uses deterministic local data in the browser.
 
 ## What works today
 
-- Responsive Patron Operations Desk dashboard for desktop and mobile.
-- Three selectable agent workspaces: Dell Parts Recovery, Local Materials Intelligence, and eBay Authentic Creator Studio.
+- Responsive Patron Supply Chain Desk dashboard for desktop and mobile.
+- Three selectable solution workspaces: Laptop Components via eBay, Workplace Improvement Supplies via Home Depot Pro, and Visual Shipment Verification via the Visual Supply Chain Ledger.
 - Natural-language orchestration input with agent routing and a simulated ranked response.
-- Mock ranked opportunities for Dell parts, construction materials, and creator assets.
-- Product-photo file selection that routes to Creator Studio and acknowledges the uploaded filename locally.
-- Visual supply-chain ledger activity preview and sustainability impact snapshot.
+- Mock ranked opportunities for laptop components, localized workplace improvement supplies, and AI supply-verification findings.
+- Product-photo file selection that routes to Visual Shipment Verification and acknowledges the uploaded filename locally.
+- Lucide laptop, building, and camera icons replace text initials across the solution cards and sidebar.
+- Top-right account menu with Account Settings and Preferences preview actions.
+- Visual Supply Chain Ledger activity preview, supplier-diversity review state, and circular-economy impact snapshot.
 - Clear demo-mode state so mock output is not mistaken for live inventory.
 - Production build and lint scripts.
 
 ## What does not work yet
 
-- No live OpenAI, eBay, Dell, Home Depot, identity, database, or map connector is installed.
+- No live OpenAI, eBay, Home Depot Pro, identity, database, camera, or map connector is installed.
 - Search results, pricing, delivery dates, compatibility scores, sustainability totals, ledger activity, and compliance records are sample data.
-- The selected photo is not uploaded or analyzed; no image leaves the browser.
-- Buttons for queue, ledger, compliance, talent, and report views are visual MVP affordances. The main agent switching, orchestration, file selection, and responsive states are functional.
+- The selected photo is not uploaded or analyzed; no image leaves the browser. Camera capture is not implemented yet.
+- Sidebar queue, ledger, compliance, workforce, account, preferences, and profile controls open functional MVP status panels. They are not yet separate URL routes or persisted workspaces.
 - There is no authentication, authorization, persistence, order placement, payment flow, audit-grade evidence, or production observability.
 
 ## Run locally
@@ -553,13 +589,25 @@ npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000). Use the agent cards to change the active workflow, edit the request, select **Add product photo**, and run orchestration. For a production-like local check:
+Open [http://localhost:3000](http://localhost:3000). Use the solution cards to change the active workflow, edit the request, select **Add product photo**, open the `JD` account menu, and run orchestration. The layout collapses to a mobile view below the tablet breakpoint, hiding the desktop sidebar and stacking cards, results, sponsors, and quick actions. For a production-like local check:
 
 ```bash
 npm run lint
 npm run build
 npm run start
 ```
+
+`npm run build` is the compile/production validation command. It runs the Next.js compiler, TypeScript checks, static generation, and route optimization. Use `npm run dev` for hot reload during development; use `npm run start` only after `npm run build` to serve the compiled app locally.
+
+## Navigation and pages
+
+The MVP is currently a single responsive command-center page rather than a multi-route application. The solution cards and sidebar solution items change the active workspace in place. Queue, visual ledger, compliance, workforce, profile, export, and opportunity controls open informative modal panels so the interaction model is testable without a database.
+
+Separate pages should be introduced when authentication, persistence, and API routes exist. A sensible route structure is `/workspace`, `/queue`, `/ledger`, `/reports`, `/solutions/laptop-components`, `/solutions/workplace-supplies`, and `/solutions/visual-shipment-verification`.
+
+## Sponsor image drop folder
+
+Approved partner PNGs are stored in [`public/sponsors/approved-png`](public/sponsors/approved-png) and referenced by the page: `dell.png`, `home_depot.png`, and `ebay.png`. Do not publish partner logos without confirming brand and sponsorship usage rights.
 
 ## Hosting the MVP
 
@@ -582,11 +630,10 @@ Put a reverse proxy or managed TLS certificate in front of the process. Add a da
 
 ## Recommended live connector sequence
 
-1. **AI orchestration:** add a server-side `/api/orchestrate` route using the OpenAI Responses API or Vercel AI SDK. Keep keys in server-only environment variables. Return structured agent, query, options, confidence, and rationale fields rather than rendering model text directly.
-2. **eBay:** register an eBay developer application, use the Browse API in sandbox first, and implement OAuth token storage and rate-limit handling. Confirm marketplace data, affiliate, and resale terms before commercial use.
-3. **Dell parts:** use an approved Dell partner or catalog feed for part-number compatibility. Do not imply Dell endorsement or certification without a contractual data source.
-4. **Local materials:** begin with a clearly labeled mock provider, then integrate an approved retailer or distributor inventory API. Location, store inventory, price, and delivery claims need freshness timestamps.
-5. **Vision and files:** add signed uploads to S3, Vercel Blob, or equivalent, then send images from a server route to a vision model. Strip unnecessary EXIF data, enforce size/type limits, and obtain user consent for location metadata.
+1. **AI orchestration:** add a server-side `/api/orchestrate` route using the OpenAI Responses API or Vercel AI SDK. Keep keys in server-only environment variables. Return structured solution, query, options, confidence, and rationale fields rather than rendering model text directly.
+2. **eBay laptop sourcing:** register an eBay Developer application, use the Browse API and sandbox/test payloads first, and implement OAuth token storage, rate limits, compatibility normalization, source timestamps, and resale/affiliate terms.
+3. **Home Depot Pro workplace supplies:** keep the current mock provider behind the same `/api/v1/materials/stock` contract, then connect an approved commercial inventory source. Include store/region, stock freshness, price, delivery, and substitution data.
+4. **Visual Supply Chain Ledger:** add signed uploads or camera capture through S3, Vercel Blob, or equivalent, then send images from a server route to a vision model. Strip unnecessary EXIF data, enforce size/type limits, link images to purchase orders, and obtain consent for location metadata.
 6. **Persistence and identity:** add Postgres plus an auth provider. Model organizations, users, suppliers, requests, recommendations, evidence, and report exports with tenant isolation.
 7. **Compliance exports:** calculate metrics from stored evidence and label estimates. Have a human approve supplier-diversity and sustainability reports before sharing them externally.
 
@@ -601,4 +648,12 @@ Put a reverse proxy or managed TLS certificate in front of the process. Add a da
 
 ## Suggested next milestone
 
-Build one end-to-end vertical slice before adding more agents: authenticated organization -> Dell parts request -> sandbox eBay search -> human-reviewed shortlist -> persisted evidence -> downloadable report. That path validates the core product loop while keeping licensing, data quality, and auditability visible.
+Build one end-to-end vertical slice before adding more solutions: authenticated organization -> laptop component request -> approved catalog or marketplace search -> human-reviewed shortlist -> persisted evidence -> downloadable report. That path validates the core product loop while keeping licensing, data quality, and auditability visible.
+
+
+### Runtime instructions
+
+```bash
+npm install
+npm run dev
+```
