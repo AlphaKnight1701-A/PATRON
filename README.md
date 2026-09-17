@@ -518,3 +518,87 @@ Patron creates a future where Dell Technologies, eBay, Hispanic businesses, and 
 Through intelligent sourcing, authentic commerce, sustainability verification, and workforce development, Patron enables underserved businesses to compete at enterprise scale while training the next generation of AI-powered supply-chain professionals.
 
 **Patron: The AI-Powered Trust Layer for Supply Chain Success.**
+
+---
+
+# MVP Status and Runbook
+
+The repository now contains a runnable proof-of-concept dashboard built with Next.js, React, TypeScript, and Tailwind CSS. It is intentionally useful without paid credentials: the current app runs in **Demo Mode** and uses deterministic local data in the browser.
+
+## What works today
+
+- Responsive Patron Operations Desk dashboard for desktop and mobile.
+- Three selectable agent workspaces: Dell Parts Recovery, Local Materials Intelligence, and eBay Authentic Creator Studio.
+- Natural-language orchestration input with agent routing and a simulated ranked response.
+- Mock ranked opportunities for Dell parts, construction materials, and creator assets.
+- Product-photo file selection that routes to Creator Studio and acknowledges the uploaded filename locally.
+- Visual supply-chain ledger activity preview and sustainability impact snapshot.
+- Clear demo-mode state so mock output is not mistaken for live inventory.
+- Production build and lint scripts.
+
+## What does not work yet
+
+- No live OpenAI, eBay, Dell, Home Depot, identity, database, or map connector is installed.
+- Search results, pricing, delivery dates, compatibility scores, sustainability totals, ledger activity, and compliance records are sample data.
+- The selected photo is not uploaded or analyzed; no image leaves the browser.
+- Buttons for queue, ledger, compliance, talent, and report views are visual MVP affordances. The main agent switching, orchestration, file selection, and responsive states are functional.
+- There is no authentication, authorization, persistence, order placement, payment flow, audit-grade evidence, or production observability.
+
+## Run locally
+
+Prerequisite: Node.js 20.9 or newer and npm.
+
+```bash
+npm install
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000). Use the agent cards to change the active workflow, edit the request, select **Add product photo**, and run orchestration. For a production-like local check:
+
+```bash
+npm run lint
+npm run build
+npm run start
+```
+
+## Hosting the MVP
+
+The easiest host is Vercel:
+
+1. Push this repository to GitHub, GitLab, or Bitbucket.
+2. Import the repository into Vercel.
+3. Keep the detected framework as Next.js and use `npm run build` as the build command.
+4. Deploy. No environment variables are required for the demo build.
+
+The app can also run on any Node host that supports Next.js 16:
+
+```bash
+npm ci
+npm run build
+npm run start
+```
+
+Put a reverse proxy or managed TLS certificate in front of the process. Add a database and object storage before using real customer records or uploads.
+
+## Recommended live connector sequence
+
+1. **AI orchestration:** add a server-side `/api/orchestrate` route using the OpenAI Responses API or Vercel AI SDK. Keep keys in server-only environment variables. Return structured agent, query, options, confidence, and rationale fields rather than rendering model text directly.
+2. **eBay:** register an eBay developer application, use the Browse API in sandbox first, and implement OAuth token storage and rate-limit handling. Confirm marketplace data, affiliate, and resale terms before commercial use.
+3. **Dell parts:** use an approved Dell partner or catalog feed for part-number compatibility. Do not imply Dell endorsement or certification without a contractual data source.
+4. **Local materials:** begin with a clearly labeled mock provider, then integrate an approved retailer or distributor inventory API. Location, store inventory, price, and delivery claims need freshness timestamps.
+5. **Vision and files:** add signed uploads to S3, Vercel Blob, or equivalent, then send images from a server route to a vision model. Strip unnecessary EXIF data, enforce size/type limits, and obtain user consent for location metadata.
+6. **Persistence and identity:** add Postgres plus an auth provider. Model organizations, users, suppliers, requests, recommendations, evidence, and report exports with tenant isolation.
+7. **Compliance exports:** calculate metrics from stored evidence and label estimates. Have a human approve supplier-diversity and sustainability reports before sharing them externally.
+
+## Runtime and safety notes
+
+- Treat every recommendation as a draft until a human approves compatibility, supplier, price, and delivery claims.
+- Never put API keys in `NEXT_PUBLIC_*` variables or client-side code.
+- Log connector request IDs, source timestamps, model versions, and human approval events without storing secrets.
+- Add rate limits, input validation, malware scanning for uploads, and retention/deletion controls before inviting external businesses.
+- Sustainability and diversity claims require documented calculation methods and source evidence; the current dashboard numbers are illustrative only.
+- API access and licensing are separate from technical integration. eBay, Dell, Home Depot, model providers, map data, and image storage each require current commercial terms and may restrict caching or redistribution.
+
+## Suggested next milestone
+
+Build one end-to-end vertical slice before adding more agents: authenticated organization -> Dell parts request -> sandbox eBay search -> human-reviewed shortlist -> persisted evidence -> downloadable report. That path validates the core product loop while keeping licensing, data quality, and auditability visible.
