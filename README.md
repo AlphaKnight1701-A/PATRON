@@ -618,6 +618,19 @@ The easiest host is Vercel:
 3. Keep the detected framework as Next.js and use `npm run build` as the build command.
 4. Deploy. No environment variables are required for the demo build.
 
+### GitHub Actions and Pages
+
+This repository is configured as a static Next.js export for GitHub Pages. The workflow at `.github/workflows/jekyll-gh-pages.yml` now installs Node 20, runs `npm ci`, runs `npm run build`, and deploys the generated `out/` directory. It is no longer a Jekyll workflow, so GitHub Pages will serve the dashboard instead of rendering the repository README.
+
+To enable it in GitHub:
+
+1. Open the repository **Settings -> Pages**.
+2. Set **Source** to **GitHub Actions**.
+3. Push to `main` or run **Deploy Next.js to GitHub Pages** manually from the Actions tab.
+4. Open `https://alphaknight1701-a.github.io/PATRON/` after the workflow completes.
+
+The Next config automatically applies `/PATRON` as the project-site base path inside GitHub Actions. Local development continues to use `http://localhost:3000` without that prefix.
+
 The app can also run on any Node host that supports Next.js 16:
 
 ```bash
