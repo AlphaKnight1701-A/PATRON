@@ -568,6 +568,11 @@ The repository now contains a runnable proof-of-concept dashboard built with Nex
 - Product-photo file selection that routes to Visual Shipment Verification and acknowledges the uploaded filename locally.
 - Lucide laptop, building, and camera icons replace text initials across the solution cards and sidebar.
 - Top-right account menu with Account Settings and Preferences preview actions.
+- Business Preferences form for business type, operation size, market scope, and a free-text description. Saved context is included in deterministic demo orchestration responses.
+- Dynamic current-date display and a short typed greeting on reload.
+- Auto-growing orchestration input that expands with longer requests up to a mobile-safe maximum.
+- Supply-verification activity controls with a check icon for an incoming laptop batch and a refresh icon for an updated supplier-diversity record.
+- Quick actions for Business Preferences, Excel/Power BI-ready dataset export preview, and Past Searches.
 - Visual Supply Chain Ledger activity preview, supplier-diversity review state, and circular-economy impact snapshot.
 - Clear demo-mode state so mock output is not mistaken for live inventory.
 - Production build and lint scripts.
@@ -576,6 +581,7 @@ The repository now contains a runnable proof-of-concept dashboard built with Nex
 
 - No live OpenAI, eBay, Home Depot Pro, identity, database, camera, or map connector is installed.
 - Search results, pricing, delivery dates, compatibility scores, sustainability totals, ledger activity, and compliance records are sample data.
+- Business Preferences are local browser state only; they are not stored in a database or sent to a model.
 - The selected photo is not uploaded or analyzed; no image leaves the browser. Camera capture is not implemented yet.
 - Sidebar queue, ledger, compliance, workforce, account, preferences, and profile controls open functional MVP status panels. They are not yet separate URL routes or persisted workspaces.
 - There is no authentication, authorization, persistence, order placement, payment flow, audit-grade evidence, or production observability.
@@ -589,7 +595,7 @@ npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000). Use the solution cards to change the active workflow, edit the request, select **Add product photo**, open the `JD` account menu, and run orchestration. The layout collapses to a mobile view below the tablet breakpoint, hiding the desktop sidebar and stacking cards, results, sponsors, and quick actions. For a production-like local check:
+Open [http://localhost:3000](http://localhost:3000). Use the solution cards to change the active workflow, open the `JD` account menu or **Business Preferences**, choose the business profile fields, edit the request, select **Add product photo**, and run orchestration. The saved profile changes the hardcoded demo response context. The layout collapses to a mobile view below the tablet breakpoint, hiding the desktop sidebar and stacking cards, results, sponsors, forms, and quick actions. For a production-like local check:
 
 ```bash
 npm run lint
@@ -601,7 +607,7 @@ npm run start
 
 ## Navigation and pages
 
-The MVP is currently a single responsive command-center page rather than a multi-route application. The solution cards and sidebar solution items change the active workspace in place. Queue, visual ledger, compliance, workforce, profile, export, and opportunity controls open informative modal panels so the interaction model is testable without a database.
+The MVP is currently a single responsive command-center page rather than a multi-route application. The solution cards and sidebar solution items change the active workspace in place. Queue, visual ledger, compliance, workforce, account settings, business preferences, export, past-search, and opportunity controls open informative modal panels or forms so the interaction model is testable without a database.
 
 Separate pages should be introduced when authentication, persistence, and API routes exist. A sensible route structure is `/workspace`, `/queue`, `/ledger`, `/reports`, `/solutions/laptop-components`, `/solutions/workplace-supplies`, and `/solutions/visual-shipment-verification`.
 

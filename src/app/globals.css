@@ -47,3 +47,17 @@ body { background: var(--background); color: var(--foreground); font-family: var
 .command-top { width: 100%; align-items: flex-start; }
 .command-top > div { flex: 1 1 auto; min-width: 0; width: 100%; }
 .command-top textarea { width: 100%; max-width: none; }
+.brand-home { border: 0; padding: 0; color: inherit; background: transparent; cursor: pointer; }
+.brand-home:hover .brand-mark { transform: translateY(-2px) rotate(-4deg); box-shadow: 0 10px 24px rgba(0, 118, 206, .5); }
+.brand-mark { transition: transform .2s ease, box-shadow .2s ease; }
+.nav-item, .mini-agent, .text-button, .outline-button, .run-button, .quick-action-list button, .account-menu button, .business-form label, .business-form select, .business-form textarea { font-family: var(--font-geist-sans), "Trebuchet MS", sans-serif; }
+.section-heading { position: relative; padding-bottom: 12px; }
+.section-heading::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: linear-gradient(90deg, rgba(116, 201, 235, .6), transparent 72%); }
+.results-section, .ledger-panel, .sponsors-section, .quick-actions { border-top: 0; }
+.typing-caret { display: inline-block; width: 2px; height: .8em; margin-left: 5px; vertical-align: -.04em; background: #77d2f6; animation: blink 1s steps(2, start) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+.command-top textarea { overflow-y: auto; min-height: 40px; max-height: 180px; transition: height .15s ease; }
+.ledger-item { width: 100%; border-left: 0; border-right: 0; border-top: 0; text-align: left; background: transparent; color: inherit; cursor: pointer; }
+.ledger-item > span:nth-child(2) { flex: 1; }.ledger-item small { display: block; color: #8faab2; font: 11px var(--font-geist-sans), sans-serif; margin-top: 4px; }
+.business-card { max-height: min(720px, calc(100vh - 32px)); overflow-y: auto; }.business-form { display: grid; gap: 14px; margin-top: 20px; }.business-form label { display: grid; gap: 7px; color: #b7d4dc; font-size: 11px; }.business-form select, .business-form textarea { width: 100%; border: 1px solid rgba(153, 204, 220, .28); border-radius: 9px; padding: 11px 12px; outline: 0; background: #0b2735; color: #edf8fa; font-size: 13px; }.business-form textarea { resize: vertical; min-height: 76px; line-height: 1.45; }.business-form select:focus, .business-form textarea:focus { border-color: #38a9e5; box-shadow: 0 0 0 3px rgba(0, 118, 206, .18); }.business-form .modal-button { margin-top: 3px; }
+@media (max-width: 620px) { .business-card { max-height: calc(100vh - 24px); }.quick-action-list button { display: flex; align-items: center; }.section-heading::after { right: 0; } }
