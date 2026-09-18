@@ -96,7 +96,7 @@ The system combines:
 - Natural language AI workflows
 - Multi-agent procurement systems
 - Marketplace intelligence
-- Computer vision
+- Digital Growth AI
 - Sustainability verification
 - Supplier-diversity reporting
 - AI-assisted workforce development
@@ -243,7 +243,7 @@ Automatically:
 
 ---
 
-# Solution 3: Computer Vision Intelligence Studio
+# Solution 3: Digital Growth AI
 
 ## Objective
 
@@ -309,10 +309,10 @@ Creates:
 
 ---
 
-# The Visual Supply Chain Ledger
-## The Gen Z Trust Bridge
+# Supporting Layer: Visual Supply Chain Ledger
+## The Trust Bridge
 
-The Visual Supply Chain Ledger is Patron's most innovative component.
+The Visual Supply Chain Ledger remains a supporting trust and compliance component, while Digital Growth AI is the third user-facing solution.
 
 Rather than relying solely on invoices or spreadsheets, Patron uses smartphone photography and computer vision to create verifiable supply-chain documentation.
 
@@ -432,7 +432,7 @@ The result is a talent pipeline capable of supporting the next generation of AI-
               │         │         │
               ▼         ▼         ▼
 
-       Laptop Components  Workplace    Computer Vision
+               Laptop Components  Workplace    Digital Growth AI
                       Agent       Supplies Agent    Agent
 
               └──────────┬───────────┘
@@ -463,9 +463,9 @@ The result is a talent pipeline capable of supporting the next generation of AI-
 - OpenAI GPT-4o
 - Vercel AI SDK
 
-## Computer Vision
+## Digital Growth AI
 
-- OpenAI Vision
+- OpenAI Vision and language models for product-content recommendations
 
 ## Integrations
 
@@ -527,7 +527,7 @@ Patron is an AI-powered multi-agent supply chain orchestrator for Hispanic-owned
 
 1. **Laptop component sourcing:** search compatible laptop components through eBay secondary-market and recommerce data.
 2. **Workplace improvement supplies:** find localized commercial supplies through a Home Depot Pro mock/provider boundary.
-3. **Visual Shipment Verification:** use mobile imagery and AI computer vision to create the Visual Supply Chain Ledger, linking condition, timestamps, sourcing records, sustainability signals, and supplier-diversity review evidence.
+3. **Digital Growth AI:** use business and customer information to recommend authentic product photography, generate content ideas, improve digital selling strategies, and connect Hispanic-owned SMBs with Gen Z and Millennial customers through eBay content.
 
 The current interface is a local demo of this architecture. It deliberately labels results as demo data until the provider contracts, API credentials, storage, and human approval workflows are connected.
 
@@ -562,18 +562,21 @@ The repository now contains a runnable proof-of-concept dashboard built with Nex
 ## What works today
 
 - Responsive Patron Supply Chain Desk dashboard for desktop and mobile.
-- Three selectable solution workspaces: Laptop Components via eBay, Workplace Improvement Supplies via Home Depot Pro, and Visual Shipment Verification via the Visual Supply Chain Ledger.
+- Three selectable solution workspaces: Laptop Components via eBay, Workplace Improvement Supplies via Home Depot Pro, and Digital Growth AI for authentic eBay product content.
 - Natural-language orchestration input with agent routing and a simulated ranked response.
 - Mock ranked opportunities for laptop components, localized workplace improvement supplies, and AI supply-verification findings.
-- Product-photo file selection that routes to Visual Shipment Verification and acknowledges the uploaded filename locally.
+- Product-photo file selection that routes to Digital Growth AI and acknowledges the uploaded filename locally.
 - Lucide laptop, building, and camera icons replace text initials across the solution cards and sidebar.
 - Top-right account menu with Account Settings and Preferences preview actions.
 - Business Preferences form for business type, operation size, market scope, and a free-text description. Saved context is included in deterministic demo orchestration responses.
 - Dynamic current-date display and a short typed greeting on reload.
 - Auto-growing orchestration input that expands with longer requests up to a mobile-safe maximum.
 - Supply-verification activity controls with a check icon for an incoming laptop batch and a refresh icon for an updated supplier-diversity record.
-- Quick actions for Business Preferences, Excel/Power BI-ready dataset export preview, and Past Searches.
-- Visual Supply Chain Ledger activity preview, supplier-diversity review state, and circular-economy impact snapshot.
+- Quick actions for Patron plans, Excel/Power BI-ready dataset export, and Past Searches.
+- Patron Pro and Patron Premium pricing cards with demo plan selection states.
+- Expanded ranked-opportunity views with hardcoded dynamic-style outputs for each solution.
+- Attachment guidance for JPEG/PDF files up to 25 MB in the demo composer.
+- Supporting supply verification activity preview, supplier-diversity review state, and circular-economy impact snapshot.
 - Clear demo-mode state so mock output is not mistaken for live inventory.
 - Production build and lint scripts.
 
@@ -652,7 +655,7 @@ Put a reverse proxy or managed TLS certificate in front of the process. Add a da
 1. **AI orchestration:** add a server-side `/api/orchestrate` route using the OpenAI Responses API or Vercel AI SDK. Keep keys in server-only environment variables. Return structured solution, query, options, confidence, and rationale fields rather than rendering model text directly.
 2. **eBay laptop sourcing:** register an eBay Developer application, use the Browse API and sandbox/test payloads first, and implement OAuth token storage, rate limits, compatibility normalization, source timestamps, and resale/affiliate terms.
 3. **Home Depot Pro workplace supplies:** keep the current mock provider behind the same `/api/v1/materials/stock` contract, then connect an approved commercial inventory source. Include store/region, stock freshness, price, delivery, and substitution data.
-4. **Visual Supply Chain Ledger:** add signed uploads or camera capture through S3, Vercel Blob, or equivalent, then send images from a server route to a vision model. Strip unnecessary EXIF data, enforce size/type limits, link images to purchase orders, and obtain consent for location metadata.
+4. **Digital Growth AI and media:** add signed product-photo uploads through S3, Vercel Blob, or equivalent, then use a vision/language model to recommend authentic photography, content ideas, and digital selling improvements. Strip unnecessary EXIF data, enforce size/type limits, and obtain consent for customer or location metadata. The Visual Supply Chain Ledger can retain approved sourcing evidence as a supporting layer.
 6. **Persistence and identity:** add Postgres plus an auth provider. Model organizations, users, suppliers, requests, recommendations, evidence, and report exports with tenant isolation.
 7. **Compliance exports:** calculate metrics from stored evidence and label estimates. Have a human approve supplier-diversity and sustainability reports before sharing them externally.
 
