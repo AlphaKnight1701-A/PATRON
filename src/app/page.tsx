@@ -709,7 +709,7 @@ export default function Home() {
               <article>
                 <span>Patron Pro</span>
                 <strong>
-                  $49<small>/month</small>
+                  $100<small>/month</small>
                 </strong>
                 <p>
                   Expanded uploads, saved business context, and richer sourcing
@@ -731,7 +731,7 @@ export default function Home() {
               <article className="featured-plan">
                 <span>Patron Premium</span>
                 <strong>
-                  $129<small>/month</small>
+                  $150<small>/month</small>
                 </strong>
                 <p>
                   Advanced growth insights, higher limits, and priority AI
