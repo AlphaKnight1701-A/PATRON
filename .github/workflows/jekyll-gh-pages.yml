@@ -36,6 +36,8 @@ jobs:
         run: npm ci
       - name: Build Next.js static export
         run: npm run build
+        env:
+          NEXT_PUBLIC_BASE_PATH: /PATRON
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

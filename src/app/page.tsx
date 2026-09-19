@@ -18,6 +18,7 @@ import {
 
 type Agent = "Tech Components" | "Workplace Supplies" | "Digital Growth AI";
 type ModalContent = { title: string; body: string; action?: string } | null;
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 type BusinessProfile = {
   type: string;
   size: string;
@@ -646,7 +647,7 @@ export default function Home() {
             <div className="sponsor-grid">
               <div className="sponsor-item">
                 <Image
-                  src="/sponsors/approved-png/dell.png"
+                  src={`${basePath}/sponsors/approved-png/dell.png`}
                   alt="Dell Technologies"
                   width={180}
                   height={52}
@@ -655,7 +656,7 @@ export default function Home() {
               </div>
               <div className="sponsor-item">
                 <Image
-                  src="/sponsors/approved-png/home_depot.png"
+                  src={`${basePath}/sponsors/approved-png/home_depot.png`}
                   alt="The Home Depot Pro"
                   width={180}
                   height={52}
@@ -664,7 +665,7 @@ export default function Home() {
               </div>
               <div className="sponsor-item">
                 <Image
-                  src="/sponsors/approved-png/ebay.png"
+                  src={`${basePath}/sponsors/approved-png/ebay.png`}
                   alt="eBay"
                   width={180}
                   height={52}
